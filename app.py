@@ -9,7 +9,14 @@ st.header('Cat Breed Classification Model🐾')
 
 cat_names = ['British Shorthair', 'Persian', 'Scottish Fold', 'Siamese', 'Sphynx']
 
-model = load_model('cat_breed_model.keras')
+model_url = 'https://drive.google.com/file/d/15fqoxt6NdL3HQlwEN02a6SvzqpN-BvMY/view?usp=sharing'
+model_path = 'cat_breed_model.keras'
+
+if not os.path.exists(model_path):
+    gdown.download(model_url, model_path, quiet=False)
+
+# Load the model
+model = load_model(model_path)
 
 def classify_images(image_path):   
     input_image = tf.keras.utils.load_img(image_path, target_size=(224, 224))
