@@ -10,7 +10,7 @@ st.header('Cat Breed Classification Model🐾')
 
 cat_names = ['British Shorthair', 'Persian', 'Scottish Fold', 'Siamese', 'Sphynx']
 
-model_url = 'https://drive.google.com/file/d/15fqoxt6NdL3HQlwEN02a6SvzqpN-BvMY/view?usp=sharing'
+model_url = 'https://drive.google.com/file/d/1sp-6Wg7ujA1Oohq-5AaZTyWdyMNhYIeQ/view?usp=drive_link'
 # model_path = 'cat_breed_model.keras'
 
 #if not os.path.exists(model_path):
