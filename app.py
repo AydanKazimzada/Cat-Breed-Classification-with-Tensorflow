@@ -17,7 +17,7 @@ model_url = 'https://drive.google.com/file/d/15fqoxt6NdL3HQlwEN02a6SvzqpN-BvMY/v
 #    gdown.download(model_url, model_path, quiet=False)
 
 # Load the model
-model = load_model(model_path)
+model = load_model(model_url)
 
 def classify_images(image_path):   
     input_image = tf.keras.utils.load_img(image_path, target_size=(224, 224))
