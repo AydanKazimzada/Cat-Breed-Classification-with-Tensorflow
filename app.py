@@ -13,7 +13,7 @@ cat_names = ['British Shorthair', 'Persian', 'Scottish Fold', 'Siamese', 'Sphynx
 
 model_url = 'https://drive.google.com/uc?id=1sp-6Wg7ujA1Oohq-5AaZTyWdyMNhYIeQ'
 
-# Function to download the model directly from Google Drive to a temporary file
+
 def download_and_load_model(model_url):
     with tempfile.NamedTemporaryFile(delete=False, suffix=".keras") as tmp_file:
         tmp_file.close()
@@ -21,7 +21,7 @@ def download_and_load_model(model_url):
 
     gdown.download(model_url, model_path, quiet=False)
 
-    # Ensure Keras 3-compatible format
+
     if model_path.endswith(".h5") or model_path.endswith(".keras"):
         model = load_model(model_path)
     else:
