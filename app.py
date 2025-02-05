@@ -11,13 +11,21 @@ st.header('Cat Breed Classification Model🐾')
 cat_names = ['British Shorthair', 'Persian', 'Scottish Fold', 'Siamese', 'Sphynx']
 
 model_url = 'https://drive.google.com/file/d/1sp-6Wg7ujA1Oohq-5AaZTyWdyMNhYIeQ/view?usp=drive_link'
-# model_path = 'cat_breed_model.keras'
 
-#if not os.path.exists(model_path):
-#    gdown.download(model_url, model_path, quiet=False)
+# Function to download the model directly from Google Drive to a temporary file
+def download_and_load_model(model_url):
 
-# Load the model
-model = load_model(model_url)
+    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+        tmp_file.close()
+        model_path = tmp_file.name
+
+    gdown.download(model_url, model_path, quiet=False)
+
+    model = load_model(model_path)
+    return model
+
+# Download and load the model
+model = download_and_load_model(model_url)
 
 def classify_images(image_path):   
     input_image = tf.keras.utils.load_img(image_path, target_size=(224, 224))
