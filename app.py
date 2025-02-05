@@ -15,15 +15,20 @@ model_url = 'https://drive.google.com/file/d/1sp-6Wg7ujA1Oohq-5AaZTyWdyMNhYIeQ'
 
 # Function to download the model directly from Google Drive to a temporary file
 def download_and_load_model(model_url):
-
-    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".keras") as tmp_file:
         tmp_file.close()
         model_path = tmp_file.name
 
     gdown.download(model_url, model_path, quiet=False)
 
-    model = load_model(model_path)
+    # Ensure Keras 3-compatible format
+    if model_path.endswith(".h5") or model_path.endswith(".keras"):
+        model = load_model(model_path)
+    else:
+        raise ValueError("Model file format is not supported. Please use `.keras` or `.h5` format.")
+
     return model
+
 
 # Download and load the model
 model = download_and_load_model(model_url)
