@@ -11,7 +11,7 @@ st.header('Cat Breed Classification Model🐾')
 
 cat_names = ['British Shorthair', 'Persian', 'Scottish Fold', 'Siamese', 'Sphynx']
 
-model_url = 'https://drive.google.com/file/d/1sp-6Wg7ujA1Oohq-5AaZTyWdyMNhYIeQ/view?usp=drive_link'
+model_url = 'https://drive.google.com/file/d/1sp-6Wg7ujA1Oohq-5AaZTyWdyMNhYIeQ'
 
 # Function to download the model directly from Google Drive to a temporary file
 def download_and_load_model(model_url):
