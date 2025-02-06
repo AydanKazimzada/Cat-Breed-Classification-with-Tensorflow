@@ -4,34 +4,13 @@ import tensorflow as tf
 import keras
 from keras.models import load_model
 import streamlit as st
-import gdown
-import tempfile
+
 
 st.header('Cat Breed Classification Model🐾')
 
 cat_names = ['British Shorthair', 'Persian', 'Scottish Fold', 'Siamese', 'Sphynx']
 
-model_url = 'https://drive.google.com/uc?id=1sp-6Wg7ujA1Oohq-5AaZTyWdyMNhYIeQ'
-
-
-def download_and_load_model(model_url):
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".keras") as tmp_file:
-        tmp_file.close()
-        model_path = tmp_file.name
-
-    gdown.download(model_url, model_path, quiet=False)
-
-
-    if model_path.endswith(".h5") or model_path.endswith(".keras"):
-        model = load_model(model_path)
-    else:
-        raise ValueError("Model file format is not supported. Please use `.keras` or `.h5` format.")
-
-    return model
-
-
-# Download and load the model
-model = download_and_load_model(model_url)
+model = load_model('cat_breed_model.keras')
 
 def classify_images(image_path):   
     input_image = tf.keras.utils.load_img(image_path, target_size=(224, 224))
@@ -70,7 +49,6 @@ st.markdown(
 )
 
 uploaded_file = st.file_uploader("", type=['jpg', 'png', 'jpeg'])
-# uploaded_file = st.file_uploader('### Please Upload Cute Cat Image :)', type=['jpg', 'png', 'jpeg'])
 
 if uploaded_file is not None:
 
